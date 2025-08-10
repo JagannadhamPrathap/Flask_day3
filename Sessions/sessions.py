@@ -13,6 +13,7 @@ def home():
 @app.route('/login',methods=['GET','POST'])
 def login():
     if request.method == 'POST':
+        session.permanent = True
         session['user'] = request.form['user']
         session['pass'] = request.form['key']
         return redirect(url_for('welcome'))
@@ -31,4 +32,5 @@ def welcome():
     else:
         return redirect(url_for('login'))
 if __name__ == '__main__':
+
     app.run(debug=True)
